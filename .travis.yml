@@ -13,6 +13,6 @@ before_install:
   - if ! go get github.com/golang/tools/cmd/cover; then go get golang.org/x/tools/cmd/cover; fi
 script:
   - go test ./...
-  - go test -c -covermode=count -coverpkg=github.com/hexdigest/prep,github.com/hexdigest/prep/cmd/prep
+  - go test -c -covermode=count -coverpkg=github.com/hexdigest/prep
   - ./prep.test -test.coverprofile coverage.cov
   - $HOME/gopath/bin/goveralls -service=travis-ci -coverprofile=coverage.cov

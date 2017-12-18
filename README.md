@@ -40,6 +40,7 @@ var prepStatements = []string{
 
 # Using prepared statements
 
+```go
 func main() {
 	sqlDB, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/mysql")
 	if err != nil {
@@ -65,7 +66,7 @@ db, err := prep.NewConnection(sqlDB, prepStatements)
 ```
 
 It instruments your connection with prepared statements found by the generator.
-It also instruments your code with the go:generate instruction so in order to update statements list you can simply run:
+It also instruments generated code with the go:generate instruction so in order to update statements list you can simply run:
 
 ```bash
 $ go generate
