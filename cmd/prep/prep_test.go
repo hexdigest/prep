@@ -150,6 +150,7 @@ func Test_uniqueStrings(t *testing.T) {
 func Test_generateCode(t *testing.T) {
 	type args struct {
 		packageName string
+		importPath  string
 		queries     []string
 	}
 	tests := []struct {
@@ -169,20 +170,21 @@ func Test_generateCode(t *testing.T) {
 			name: "success",
 			args: args{
 				packageName: "noname",
+				importPath:  "github.com/hexdigest/prep",
 				queries:     []string{"SELECT", "UPDATE"},
 			},
-			want: "package noname\n\nvar prepStatements = []string{\n\tSELECT,\n\tUPDATE,\n}\n",
+			want: "//go:generate prep -f github.com/hexdigest/prep\n\npackage noname\n\nvar prepStatements = []string{\n\tSELECT,\n\tUPDATE,\n}\n",
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := generateCode(tt.args.packageName, tt.args.queries)
+			got, err := generateCode(tt.args.packageName, tt.args.importPath, tt.args.queries)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("generateCode() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(string(got), tt.want) {
-				t.Errorf("generateCode() = %v, want %v", got, []byte(tt.want))
+				t.Errorf("generateCode() = %v, want %v", string(got), tt.want)
 			}
 		})
 	}

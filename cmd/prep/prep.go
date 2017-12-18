@@ -85,7 +85,7 @@ func main() {
 		log.Fatalf("prep: no SQL queries found")
 	}
 
-	code, err := generateCode(pkg.Pkg.Name(), queries)
+	code, err := generateCode(pkg.Pkg.Name(), *sourcePackage, queries)
 	if err != nil {
 		log.Fatalf("prep: failed to generate code: %v", err)
 	}
@@ -110,12 +110,12 @@ func getPathToPackage(importPath string) (string, error) {
 	return filepath.Join(p.SrcRoot, p.ImportPath), nil
 }
 
-func generateCode(packageName string, queries []string) ([]byte, error) {
+func generateCode(packageName, importPath string, queries []string) ([]byte, error) {
 	buf := bytes.NewBuffer([]byte{})
 
 	fmt.Fprintf(buf,
-		"package %s\n\nvar prepStatements = []string{\n%s,\n}",
-		packageName, strings.Join(queries, ",\n"))
+		"//go:generate prep -f %s\n\npackage %s\n\nvar prepStatements = []string{\n%s,\n}",
+		importPath, packageName, strings.Join(queries, ",\n"))
 
 	formatted, err := imports.Process("", buf.Bytes(), nil)
 	if err != nil {
