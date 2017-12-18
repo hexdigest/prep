@@ -23,9 +23,10 @@ func main() {
 
 Generate a list of the SQL statements used in your package:
 
-prep -f github.com/hexdigest/prepdemo
-
+```
+$ prep -f github.com/hexdigest/prepdemo
 $ cat prepared_statements.go
+```
 
 ```go
 //go:generate prep -f github.com/hexdigest/prepdemo
@@ -67,5 +68,5 @@ It instruments your connection with prepared statements found by the generator.
 It also instruments your code with the go:generate instruction so in order to update statements list you can simply run:
 
 ```bash
-go generate
+$ go generate
 ```
