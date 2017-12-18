@@ -1,5 +1,10 @@
 # Prep [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/hexdigest/prep/blob/master/LICENSE) [![Build Status](https://travis-ci.org/hexdigest/prep.svg?branch=master)](https://travis-ci.org/hexdigest/prep) [![Coverage Status](https://coveralls.io/repos/github/hexdigest/prep/badge.svg?branch=master)](https://coveralls.io/github/hexdigest/prep?branch=master) [![Go Report Card](https://goreportcard.com/badge/github.com/hexdigest/prep)](https://goreportcard.com/report/github.com/hexdigest/prep)
-Prep finds all SQL statements in a Go package and instruments db connection with prepared statements
+Prep finds all SQL statements in a Go package and instruments db connection with prepared statements.
+It allows you to benefit from the prepared SQL statements almost without any changes to your code.
+
+Prep consists of two parts:
+* A command line tool that finds all SQL statements in your code
+* A package that instruments your code with prepared SQL statements using the found ones
 
 # Usage
 
@@ -21,7 +26,7 @@ func main() {
 }
 ```
 
-Generate a list of the SQL statements used in your package:
+Let's generate a list of the SQL statements used in your package:
 
 ```bash
 $ prep -f github.com/hexdigest/prepdemo
