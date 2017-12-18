@@ -72,3 +72,15 @@ The generated code already contains //go:generate instruction, so in order to up
 ```bash
 $ go generate
 ```
+
+# Some synthetic benchmarks
+
+```bash
+$ go test -bench=.
+BenchmarkPostgresWithoutPreparedStatements-4   	   20000	     59941 ns/op	    1183 B/op	      32 allocs/op
+BenchmarkPostgresWithPreparedStatements-4      	   50000	     41560 ns/op	    1021 B/op	      26 allocs/op
+BenchmarkMySQLWithoutPreparedStatements-4      	   50000	     26454 ns/op	     827 B/op	      23 allocs/op
+BenchmarkMySQLWithPreparedStatements-4         	  200000	      9509 ns/op	     634 B/op	      19 allocs/op
+PASS
+ok  	github.com/hexdigest/prep	7.884s
+```
