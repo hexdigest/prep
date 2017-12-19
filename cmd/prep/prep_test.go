@@ -82,7 +82,7 @@ func Test_queryFinder_Visit(t *testing.T) {
 			name: "Query",
 			qf: &queryFinder{
 				packageInfo:    &types.Info{},
-				prepInterfaces: map[string]*types.Interface{"querier": &types.Interface{}},
+				prepInterfaces: map[string]*types.Interface{"querier": {}},
 			},
 			node: &ast.CallExpr{
 				Fun: &ast.SelectorExpr{
@@ -96,7 +96,7 @@ func Test_queryFinder_Visit(t *testing.T) {
 			name: "QueryContext",
 			qf: &queryFinder{
 				packageInfo:    &types.Info{},
-				prepInterfaces: map[string]*types.Interface{"querierWithContext": &types.Interface{}},
+				prepInterfaces: map[string]*types.Interface{"querierWithContext": {}},
 			},
 			node: &ast.CallExpr{
 				Fun: &ast.SelectorExpr{
