@@ -3,6 +3,7 @@ Package prep instruments instruments db connection with prepared statements.
 It allows you to benefit from the prepared SQL statements almost without any changes to your code.
 
 Prep consists of two parts:
+
 1. A command line tool that finds all SQL statements in your code
 
 2. A package that instruments your code with prepared SQL statements using the found ones
